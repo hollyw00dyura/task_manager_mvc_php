@@ -8,8 +8,9 @@ abstract class ModelVerify {
     }
     function verifyEmail($data) {
         $email = $data['email'] ?? null;
-        if ($email === null) return false;
-        return true;
+        if ($email !== null && filter_var($email, FILTER_VALIDATE_EMAIL) !== false) // можно так же регулярным выражением
+            return true;
+        return false;
     }
     function verifyLoginPass($data, $name_func) {
         $flag_verify = -1;

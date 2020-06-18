@@ -41,6 +41,7 @@ class ModelTask extends ModelVerify {
 
     function updateDataTaskBd($data) {
         $this->setGlobalBeforeLogin();
+        $this->defender_xss($data);
         switch ($this->verifyDataTask($data, 'update')) {
             case 1:
                 return true;
@@ -59,6 +60,7 @@ class ModelTask extends ModelVerify {
 
     function createDataTaskBd($data) {
         $this->setGlobalBeforeLogin();
+        $this->defender_xss($data);
         switch ($this->verifyDataTask($data, 'insert')) {
             case 1:
                 return true;

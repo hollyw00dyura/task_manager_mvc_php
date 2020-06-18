@@ -12,6 +12,7 @@ class ModelUser extends ModelVerify {
 
     public function verifyLoginData($data) {
         $this->initGlobalData();
+        $this->defender_xss($data);
         switch ($this->verifyLoginPass($data, 'get_login')) {
             case 1:
                 return true;
@@ -30,6 +31,7 @@ class ModelUser extends ModelVerify {
 
     public function verifyAndCreateUser($data) {
         $this->initGlobalData();
+        $this->defender_xss($data);
         switch ($this->verifyLoginPass($data, 'add_login')) {
             case 1:
                 Registry::set('login', $data['login']);

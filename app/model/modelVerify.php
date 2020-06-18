@@ -32,4 +32,9 @@ abstract class ModelVerify {
         Bd::$name_func($data);
         return 1;
     }
+    function defender_xss(&$data){
+        $filter = array("<", ">");
+        foreach ($data as $key=>$value)
+            $data[$key] = str_replace($filter, "|", $value);
+    }
 }

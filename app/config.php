@@ -17,3 +17,4 @@ Registry::set('bd', $bd);
 Registry::set('countOnPage', 3);
 Registry::set('leftLimitMax', 2);
 Registry::set('rightLimitMax', 2);
+Registry::set('sort', 0);

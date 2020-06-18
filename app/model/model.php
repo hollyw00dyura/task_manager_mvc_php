@@ -10,7 +10,8 @@ class Model extends Verify {
         $this->modelUser = new ModelUser();
     }
 
-    public function getDataTasks($current_show_id = null) {
+    public function getDataTasks($sort, $current_show_id = null) {
+        Registry::set('sort', $sort);
         return $this->modelTask->getDataTasksBd($current_show_id);
     }
 

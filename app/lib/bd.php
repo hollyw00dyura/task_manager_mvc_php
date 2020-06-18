@@ -39,8 +39,16 @@ class Bd {
     public static function get_data($id, $count) {
         if ($count === null)
             $sql = "SELECT * FROM tasks WHERE id = '".$id."'";
-        else
-            $sql = "SELECT * FROM tasks ORDER BY id LIMIT ".$id.", ".$count;
+        else {
+            $sort = Registry::get('sort');
+            if ($sort == 0)
+                $sqlOrderBy = "id";
+            elseif ($sort == 1)
+                $sqlOrderBy = "name ASC";
+            elseif ($sort == 2)
+                $sqlOrderBy = "name DESC";
+            $sql = "SELECT * FROM tasks ORDER BY ".$sqlOrderBy." LIMIT ".$id.", ".$count;
+        }
         $resp = Registry::get('bd')->query($sql);
         $array_bd = [];
         if ($resp->num_rows > 0) {

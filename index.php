@@ -30,6 +30,8 @@ if (!empty($_GET['login'])) {
     $controller->onShowCreateTask();
 } elseif (!empty($_GET['createNewTask'])){
     $controller->verifyAndCreateTask($_GET['createNewTask']);
+} elseif (!empty($_GET['sorted'])){
+    $controller->onShowTasks($_GET['sorted']['sort']);
 } else {
     $controller->onShowTasks(); // здесь же отработка и экшена back
 }

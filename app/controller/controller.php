@@ -13,13 +13,14 @@ class Controller {
         Registry::set('view', $this->view);
     }
 
-    function onShowTasks() {
-        $data_from_bd = $this->model->getDataTasks();
+    function onShowTasks($sort = null) {
+        if($sort === null) $sort = Registry::get('sort');
+        $data_from_bd = $this->model->getDataTasks($sort, null);
         $this->view->updateViewTasks($data_from_bd);
     }
 
     function onShowChangeTask($id_task) {
-        $data_from_bd = $this->model->getDataTasks($id_task);
+        $data_from_bd = $this->model->getDataTasks(0, $id_task);
         $this->view->showChangeTaskView($data_from_bd);
     }
 
@@ -65,5 +66,9 @@ class Controller {
     function onExitUser() {
         $this->model->exitUser();
         $this->onShowTasks();
+    }
+
+    function onSortedTask() {
+
     }
 }
